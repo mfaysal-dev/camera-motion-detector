@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Motion Detector | mfaysal.com</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-video"></i> Motion Detector</h1>
+            <p class="domain">mfaysal.com</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Camera Feed -->
+            <div class="camera-section">
+                <div class="video-wrapper">
+                    <video id="video" autoplay muted playsinline></video>
+                    <canvas id="canvas"></canvas>
+                    <div id="statusOverlay" class="status-overlay">
+                        <span id="statusText">Camera Off</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="startBtn" class="btn primary">
+                        <i class="fas fa-play"></i> Start Camera
+                    </button>
+                    <button id="stopBtn" class="btn danger" disabled>
+                        <i class="fas fa-stop"></i> Stop Camera
+                    </button>
+                    <button id="sensitivityBtn" class="btn secondary">
+                        <i class="fas fa-sliders-h"></i> Sensitivity
+                    </button>
+                </div>
+            </div>
+
+            <!-- Info Panel -->
+            <div class="info-section">
+                <div class="card">
+                    <h3><i class="fas fa-chart-line"></i> Detection Status</h3>
+                    <div class="stat-row">
+                        <span class="label">Motion:</span>
+                        <span id="motionStatus" class="value no-motion">—</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="label">Frames Checked:</span>
+                        <span id="frameCount" class="value">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="label">Motion Events:</span>
+                        <span id="motionCount" class="value">0</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-cog"></i> Settings</h3>
+                    <div class="setting-row">
+                        <label>Sensitivity Level</label>
+                        <input type="range" id="sensitivity" min="5" max="50" value="20">
+                    </div>
+                    <div class="setting-row">
+                        <label>Minimum Area</label>
+                        <input type="range" id="minArea" min="50" max="500" value="150">
+                    </div>
+                    <div class="setting-row">
+                        <label>
+                            <input type="checkbox" id="showDiff"> Show Difference
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                    <div id="logList" class="log-list">
+                        <p class="empty">No activity yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 mfaysal.com — All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <!-- Sensitivity Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Adjust Sensitivity</h3>
+            <p>Fine-tune detection levels</p>
+            <div class="setting-row">
+                <label>Motion Threshold</label>
+                <input type="range" id="modalSensitivity" min="5" max="50" value="20">
+            </div>
+            <button id="saveSettings" class="btn primary">Save Changes</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
